@@ -1,0 +1,20 @@
+def generate_letter_histogram(file_path):
+    """
+    Reads a text file and prints a histogram of the frequency of each letter (a-z, case insensitive).
+    """
+    from collections import Counter
+    import string
+
+    letter_counter = Counter()
+
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            # Only consider alphabetic characters, ignore case
+            letters = [char.lower() for char in line if char.isalpha()]
+            letter_counter.update(letters)
+
+    # Only show a-z in the histogram
+    for letter in string.ascii_lowercase:
+        freq = letter_counter[letter]
+        if freq > 0:
+            print(f"{letter}: {'#' * freq} ({freq})")
