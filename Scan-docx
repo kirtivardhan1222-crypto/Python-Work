@@ -1,0 +1,15 @@
+from docx import Document
+
+doc = Document("report.docx")
+text = "\n".join([p.text for p in doc.paragraphs])
+
+if "Executive Summary" not in text:
+    print("❌ Missing Executive Summary")
+
+if "Recommendations" not in text:
+    print("❌ Missing Recommendations")
+
+banned = ["utilize", "synergy"]
+for word in banned:
+    if word in text:
+        print(f"⚠️ Avoid the word: {word}")
